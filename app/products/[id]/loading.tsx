@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div role="status" className="max-w-6xl mx-auto px-6 py-12">
+    <div role="status" className="max-w-7xl mx-auto px-6 py-12">
       <span className="sr-only">Loading product...</span>
 
       {/* Back link */}

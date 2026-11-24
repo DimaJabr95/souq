@@ -6,22 +6,9 @@ type PageProps = {
   params: Promise<{ id: string }>;
 };
 
-// export default async function ProductDetails({ params }: PageProps) {
-
-//   const { id } = await params;
-//   const product = await getProductDetails(id);
-
-//   if (!product) notFound();
-
-//   return (
-//     <h2>Product Details {id}</h2>
-//   )
-
-// }
-
-
-
 export default async function ProductDetails({ params }: PageProps) {
+
+  
 
   const { id } = await params;
   const product = await getProductDetails(id);
@@ -43,10 +30,11 @@ export default async function ProductDetails({ params }: PageProps) {
         {/* Product layout */}
         <div className="grid grid-cols-1 gap-10 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:grid-cols-2 md:p-10">
 
+
           {/* Image */}
           <div className="flex items-center justify-center rounded-xl bg-gray-50 p-6">
             <img
-              src={product.images[0]}
+              src={product.images[0] || product.thumbnail}
               alt={product.title}
               className="h-full max-h-[450px] w-full object-contain"
             />
@@ -95,17 +83,16 @@ export default async function ProductDetails({ params }: PageProps) {
 
             {/* Stock */}
             <div className="mt-6">
-              {product.stock < 10 ? (
-                <p className="font-semibold text-red-600">
-                  Only {product.stock} left!
-                </p>
-              ) : (
-                <p className="font-semibold text-green-600">
-                  In stock
-                </p>
-              )}
-            </div>
 
+              {product.stock === 0 ? (
+                <p className="font-semibold text-gray-500">Out of stock</p>
+              ) : product.stock < 10 ? (
+                <p className="font-semibold text-red-600">Only {product.stock} left!</p>
+              ) : (
+                <p className="font-semibold text-green-600">In stock</p>
+              )}
+
+            </div>
           </div>
         </div>
       </div>
