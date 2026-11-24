@@ -1,14 +1,29 @@
 import { getProductDetails } from "@/lib/api";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Metadata } from "next";
+import Image from "next/image";
+
 
 type PageProps = {
   params: Promise<{ id: string }>;
 };
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const product = await getProductDetails(id);
+
+  if (!product) return { title: "Product not found" };
+
+  return {
+    title: product.title,
+    description: product.description,
+  };
+}
+
 export default async function ProductDetails({ params }: PageProps) {
 
-  
+
 
   const { id } = await params;
   const product = await getProductDetails(id);
@@ -32,11 +47,14 @@ export default async function ProductDetails({ params }: PageProps) {
 
 
           {/* Image */}
-          <div className="flex items-center justify-center rounded-xl bg-gray-50 p-6">
-            <img
+          <div className="relative aspect-square w-full rounded-xl bg-gray-50">
+            <Image
               src={product.images[0] || product.thumbnail}
               alt={product.title}
-              className="h-full max-h-[450px] w-full object-contain"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-contain p-6"
+              priority
             />
           </div>
 
