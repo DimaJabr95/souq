@@ -31,3 +31,5 @@ const response = await fetch(`https://dummyjson.com/products/${id}`);
   return product
 
 }
+
+

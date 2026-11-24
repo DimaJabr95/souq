@@ -8,5 +8,5 @@ export type Product = {
     category: string;
     stock: number;
     images: [""];
-    barnd?: string
+    brand?: string
 };
