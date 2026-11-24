@@ -1,7 +1,8 @@
 
 import { cacheLife } from "next/cache";
-import ProductCard from "../components/product/ProductCard";
 import { getProducts } from "@/lib/api";
+import ProductCard from "@/components/product/ProductCard";
+
 
 export default async function Home() {
   "use cache";

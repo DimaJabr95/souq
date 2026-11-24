@@ -4,4 +4,9 @@ export type Product = {
     thumbnail: string;
     price: number;
     rating: number;
+    description: string;
+    category: string;
+    stock: number;
+    images: [""];
+    barnd?: string
 };
